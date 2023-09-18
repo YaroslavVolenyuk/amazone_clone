@@ -8,11 +8,18 @@ import sliderImg_4 from '../images/slider/sliderImg_4.jpg';
 
 const Banner = () => {
   return (
-    <div>
-      <Carousel>
+    <div className="relative">
+      <Carousel
+        autoPlay
+        infiniteLoop
+        showStatus={false}
+        showIndicators={false}
+        showThumbs={false}
+        interval={3000}
+      >
         <div>
           {' '}
-          <Image src={sliderImg_1} alt="slider1" />
+          <Image priority src={sliderImg_1} alt="slider1" />
         </div>
         <div>
           {' '}
@@ -27,6 +34,7 @@ const Banner = () => {
           <Image src={sliderImg_4} alt="slider3" />
         </div>
       </Carousel>
+      <div className="w-full h-40 bg-gradient-to-t from-gray-100 to-tansparent absolute bottom-0 z-20"></div>
     </div>
   );
 };
