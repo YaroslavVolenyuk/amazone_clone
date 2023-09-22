@@ -1,14 +1,18 @@
 import '@/styles/globals.css';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import RootLayout from '@/components/RootLayout';
+import { store } from '@/store/store';
 import type { AppProps } from 'next/app';
+import { Provider } from 'react-redux';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <div className="font-bodyFont bg-gray-300">
-      <RootLayout>
-        <Component {...pageProps} />
-      </RootLayout>
-    </div>
+    <Provider store={store}>
+      <div className="font-bodyFont bg-gray-300">
+        <RootLayout>
+          <Component {...pageProps} />
+        </RootLayout>
+      </div>
+    </Provider>
   );
 }
