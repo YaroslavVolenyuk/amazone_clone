@@ -4,10 +4,16 @@ import React from 'react';
 import { BiCaretDown } from 'react-icons/bi';
 import { HiOutlineSearch } from 'react-icons/hi';
 import { SlLocationPin } from 'react-icons/sl';
+import { useSelector } from 'react-redux';
+import { StateProps } from '../../../type';
 import cartIcon from '../../images/cartIcon.png';
 import logo from '../../images/logo.png';
 
 const Header = () => {
+  const { productData, favoriteData } = useSelector(
+    (state: StateProps) => state.next,
+  );
+  console.log('productData', productData, 'favoriteData:', favoriteData);
   return (
     <div className="w-full h-20 bg-amazon_blue text-lightText sticky top-0 z-50">
       <div className="h-full w-full mx-auto inline-flex items-center justify-between gap-1 mdl:gap-3 px-4">
@@ -59,7 +65,7 @@ const Header = () => {
           />
           <p className="text-xs text-white font-bold mt-3">Cart</p>
           <span className="absolute text-amazon_yellow text-xs top-2 left-[29px] font-semibold">
-            0
+            {productData ? productData.lenght : 0}
           </span>
         </Link>
       </div>

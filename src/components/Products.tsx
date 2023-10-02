@@ -1,11 +1,14 @@
+import { addToCart, addToFavorite } from '@/store/nextSlice';
 import Image from 'next/image';
 import React from 'react';
 import { FaHeart } from 'react-icons/fa';
 import { HiShoppingCart } from 'react-icons/hi';
+import { useDispatch } from 'react-redux';
 import { ProductProps } from '../../type';
 import FormattedPrice from './FormattedPrice';
 
 const Products = ({ productData }: any) => {
+  const dispatch = useDispatch();
   return (
     <div className="w-full px-6 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
       {productData.map(
@@ -36,7 +39,25 @@ const Products = ({ productData }: any) => {
                 <span className="w-full h-full border-b-[1px] border-b-gray-400 flex items-center justify-center text-xl bg-transparent hover:bg-amazon_yellow cursor-pointer duration-300 ">
                   <HiShoppingCart />
                 </span>
-                <span className="w-full h-full border-b-gray-400 flex items-center justify-center  text-xl bg-transparent hover:bg-amazon_yellow cursor-pointer duration-300 ">
+                <span
+                  onClick={() =>
+                    dispatch(
+                      addToFavorite({
+                        _id: _id,
+                        title: title,
+                        brand: brand,
+                        category: category,
+                        description: description,
+                        image: image,
+                        isNew: isNew,
+                        oldPrice: oldPrice,
+                        price: price,
+                        quantity: 1,
+                      }),
+                    )
+                  }
+                  className="w-full h-full border-b-gray-400 flex items-center justify-center  text-xl bg-transparent hover:bg-amazon_yellow cursor-pointer duration-300 "
+                >
                   <FaHeart />
                 </span>
               </div>
@@ -62,7 +83,25 @@ const Products = ({ productData }: any) => {
               <p className="text-xs text-gray-600 text-jusity">
                 {description.substring(0, 120)}
               </p>
-              <button className="h-10 font-medium bg-amazon_blue text-white rounded-md hover:bg-amazon_yellow hover:text-black duration-300 mt-2">
+              <button
+                onClick={() =>
+                  dispatch(
+                    addToCart({
+                      _id: _id,
+                      title: title,
+                      brand: brand,
+                      category: category,
+                      description: description,
+                      image: image,
+                      isNew: isNew,
+                      oldPrice: oldPrice,
+                      price: price,
+                      quantity: 1,
+                    }),
+                  )
+                }
+                className="h-10 font-medium bg-amazon_blue text-white rounded-md hover:bg-amazon_yellow hover:text-black duration-300 mt-2"
+              >
                 Add to Cart
               </button>
             </div>
