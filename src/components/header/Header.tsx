@@ -13,7 +13,9 @@ const Header = () => {
   const { productData, favoriteData } = useSelector(
     (state: StateProps) => state.next,
   );
-  console.log('productData', productData, 'favoriteData:', favoriteData);
+  // console.log('productData', productData, 'favoriteData:', favoriteData);
+  console.log('productData', productData.length);
+  console.log('favoriteData', favoriteData.length);
   return (
     <div className="w-full h-20 bg-amazon_blue text-lightText sticky top-0 z-50">
       <div className="h-full w-full mx-auto inline-flex items-center justify-between gap-1 mdl:gap-3 px-4">
@@ -46,9 +48,15 @@ const Header = () => {
           <p className="text-white font-bold">Account & Lists</p>
         </div>
         {/* signin */}
-        <div className="text-xs text-gray-100 flex flex-col justify-center px-2 border border-transparent hover:border-white cursor-pointer duration-300 h-[70%]">
+        <div className="text-xs text-gray-100 flex flex-col justify-center px-2 border border-transparent hover:border-white cursor-pointer duration-300 h-[70%] relative">
           <p>Marked</p>
           <p className="text-white font-bold">& Favorite</p>
+          <span>5</span>
+          {favoriteData.length > 0 && (
+            <span className="absolute right-2 top-2 w-4 h-4 border-[1px] border-gray-400 flex items-center justify-center text-xs text-amazon-yellow">
+              {/* {favoriteData.length} */}
+            </span>
+          )}
         </div>
 
         {/* favorite */}
@@ -65,7 +73,7 @@ const Header = () => {
           />
           <p className="text-xs text-white font-bold mt-3">Cart</p>
           <span className="absolute text-amazon_yellow text-xs top-2 left-[29px] font-semibold">
-            {productData ? productData.lenght : 0}
+            {productData ? productData.length : 0}
           </span>
         </Link>
       </div>

@@ -1,4 +1,9 @@
-import { addToCart, addToFavorite } from '@/store/nextSlice';
+import {
+  addToCart,
+  addToFavorite,
+  decreaseQuantity,
+  deleteProduct,
+} from '@/store/nextSlice';
 import Image from 'next/image';
 import React from 'react';
 import { FaHeart } from 'react-icons/fa';
